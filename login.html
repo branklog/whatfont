@@ -215,12 +215,12 @@ const SUPABASE_URL ='https://ttunieohxvnhwiikxfzu.supabase.co';
 const SUPABASE_ANON_KEY =
 'sb_publishable_mdIZt_b1mzvuRoBp3eLYHA_MmBJfIoP';
 
-const supabase =
-window.supabase.createClient(
+const client =
+supabase.createClient(
 SUPABASE_URL,
 SUPABASE_ANON_KEY
 );
-
+  
 /* =========================
 ELEMENT
 ========================= */
@@ -248,7 +248,7 @@ loginBtn.classList.add('loading');
 loginBtn.innerText = '로그인 중...';
 
 const { data, error } =
-await supabase.auth.signInWithPassword({
+await client.auth.signInWithPassword({
 
 email:'cgschool@naver.com',
 password:password.value
@@ -304,7 +304,7 @@ const {
 data:{ user }
 }
 =
-await supabase.auth.getUser();
+await client.auth.getUser();
 
 if(user){
 
