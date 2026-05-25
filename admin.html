@@ -847,15 +847,19 @@ preview_text:previewText
 
 }]);
 
+
 if(error){
 
 console.log(error);
 
-alert('등록 실패');
+alert(error.message);
 
 return;
 
 }
+
+
+  
 
 alert('폰트 등록 완료');
 
