@@ -432,9 +432,10 @@ transition:
 opacity .35s ease,
 transform .35s ease;
 
-width:calc(100% + 120px);
-max-width:880px;
+width:70%;
+max-width:760px;
 }
+  
 
 /* EFFECT */
 
@@ -764,6 +765,32 @@ MOBILE
 ========================= */
 
 @media(max-width:900px){
+
+.header{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+}
+
+.header-left{
+display:flex;
+align-items:center;
+width:auto;
+gap:12px;
+}
+
+.header-right{
+margin-left:auto;
+}
+
+.nav{
+width:100%;
+order:3;
+overflow-x:auto;
+}
+  
 .hero-layout{
 display:block;
 }
@@ -799,21 +826,10 @@ display:none !important;
 display:none;
 }
 
-.floating-card{
-position:relative !important;
-top:auto !important;
-left:auto !important;
-right:auto !important;
-bottom:auto !important;
 
-transform:none !important;
 
-width:100%;
 
-padding:22px;
-
-overflow:hidden;
-}
+  
   
 .floating-title{
 font-size:24px;
