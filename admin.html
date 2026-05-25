@@ -5,14 +5,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>WhatFont Admin Login</title>
+<title>WhatFont Admin</title>
 
 <link
 rel="stylesheet"
 href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
 />
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
@@ -26,7 +24,7 @@ box-sizing:border-box;
 --bg:#f5f5f5;
 --text:#111;
 --sub:#777;
---line:#e7e7e7;
+--line:#e8e8e8;
 --blue:#3155e7;
 }
 
@@ -34,60 +32,241 @@ body{
 background:var(--bg);
 font-family:'Pretendard',sans-serif;
 color:var(--text);
-
-min-height:100vh;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-padding:20px;
 }
 
 input,
+textarea,
+select,
 button{
 font-family:'Pretendard',sans-serif;
 }
 
-.login-box{
+.container{
 width:100%;
-max-width:460px;
+max-width:1700px;
+margin:0 auto;
+padding:28px 32px 80px;
+}
 
-background:#fff;
+/* =========================
+HEADER
+========================= */
 
-border:1px solid var(--line);
-border-radius:32px;
-
-padding:42px;
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:40px;
 }
 
 .logo{
-font-size:46px;
+font-size:38px;
 font-weight:900;
-letter-spacing:-2px;
-
-margin-bottom:12px;
+letter-spacing:-1px;
 }
 
 .logo span{
 color:var(--blue);
 }
 
-.desc{
-font-size:15px;
-line-height:1.7;
-color:#666;
+.publish-btn{
+height:52px;
+padding:0 26px;
 
+border:none;
+border-radius:14px;
+
+background:var(--blue);
+color:#fff;
+
+font-size:15px;
+font-weight:800;
+
+cursor:pointer;
+}
+
+/* =========================
+LAYOUT
+========================= */
+
+.layout{
+display:grid;
+grid-template-columns:620px minmax(0,1fr);
+gap:32px;
+align-items:flex-start;
+}
+
+/* =========================
+FORM
+========================= */
+
+.form-panel{
+background:#fff;
+
+border:1px solid var(--line);
+border-radius:28px;
+
+padding:34px;
+}
+
+.panel-title{
+font-size:26px;
+font-weight:900;
+letter-spacing:-1px;
 margin-bottom:34px;
 }
 
-.form{
-display:flex;
-flex-direction:column;
-gap:16px;
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
 }
 
-.input{
+.full{
+grid-column:1 / -1;
+}
+
+.field{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.label{
+font-size:13px;
+font-weight:800;
+color:#555;
+}
+
+.input,
+.select,
+.textarea{
+width:100%;
+
+background:#fff;
+
+border:1px solid var(--line);
+border-radius:14px;
+
+padding:0 16px;
+
+font-size:15px;
+
+outline:none;
+transition:.2s;
+}
+
+.input,
+.select{
+height:52px;
+}
+
+.textarea{
+padding:16px;
+height:120px;
+resize:none;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus{
+border-color:var(--blue);
+}
+
+/* =========================
+UPLOAD
+========================= */
+
+.upload-box{
+height:180px;
+
+border:2px dashed #d8d8d8;
+border-radius:20px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+
+cursor:pointer;
+transition:.2s;
+
+background:#fafafa;
+}
+
+.upload-box:hover{
+border-color:var(--blue);
+background:#f8faff;
+}
+
+.upload-title{
+font-size:16px;
+font-weight:800;
+margin-bottom:6px;
+}
+
+.upload-sub{
+font-size:13px;
+color:#777;
+}
+
+/* =========================
+PREVIEW
+========================= */
+
+.preview-panel{
+display:flex;
+flex-direction:column;
+gap:24px;
+}
+
+/* CARD */
+
+.preview-card{
+background:#fff;
+
+border:1px solid var(--line);
+border-radius:30px;
+
+padding:40px;
+}
+
+.preview-label{
+font-size:12px;
+font-weight:900;
+color:#777;
+margin-bottom:20px;
+letter-spacing:.4px;
+}
+
+/* FONT NAME */
+
+.preview-name{
+font-size:64px;
+font-weight:900;
+letter-spacing:-4px;
+line-height:1;
+margin-bottom:16px;
+}
+
+/* META */
+
+.preview-meta{
+display:flex;
+flex-wrap:wrap;
+gap:16px;
+margin-bottom:28px;
+}
+
+.preview-meta span{
+font-size:14px;
+font-weight:700;
+color:#666;
+}
+
+/* PREVIEW INPUT */
+
+.preview-input{
 width:100%;
 height:58px;
 
@@ -98,62 +277,132 @@ border-radius:16px;
 
 padding:0 18px;
 
-font-size:15px;
-
-outline:none;
-transition:.2s;
-}
-
-.input:focus{
-border-color:var(--blue);
-}
-
-.login-btn{
-width:100%;
-height:58px;
-
-border:none;
-border-radius:16px;
-
-background:var(--blue);
-color:#fff;
-
-font-size:15px;
-font-weight:800;
-
-cursor:pointer;
-transition:.2s;
-}
-
-.login-btn:hover{
-opacity:.92;
-}
-
-.message{
-margin-top:18px;
-
-font-size:14px;
+font-size:17px;
 font-weight:700;
 
-color:#e53935;
-
-display:none;
+outline:none;
+margin-bottom:34px;
 }
 
-.loading{
-opacity:.7;
-pointer-events:none;
+/* WEIGHT */
+
+.weight-list{
+display:flex;
+flex-direction:column;
+}
+
+.weight-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:22px 0;
+
+border-bottom:1px solid var(--line);
+gap:18px;
+}
+
+.weight-preview{
+font-size:34px;
+letter-spacing:-2px;
+line-height:1.2;
+word-break:keep-all;
+}
+
+.weight-number{
+font-size:13px;
+font-weight:800;
+color:#777;
+}
+
+/* WEIGHT */
+
+.w100{font-weight:100;}
+.w300{font-weight:300;}
+.w500{font-weight:500;}
+.w700{font-weight:700;}
+.w900{font-weight:900;}
+
+/* TAG */
+
+.tag-wrap{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:24px;
+}
+
+.tag{
+padding:10px 14px;
+
+background:#f2f2f2;
+border-radius:999px;
+
+font-size:13px;
+font-weight:700;
+}
+
+/* =========================
+JSON
+========================= */
+
+.json-box{
+background:#111;
+color:#fff;
+
+border-radius:24px;
+
+padding:28px;
+
+font-size:13px;
+line-height:1.8;
+
+overflow:auto;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:1200px){
+
+.layout{
+grid-template-columns:1fr;
+}
+
 }
 
 @media(max-width:700px){
 
-.login-box{
-padding:30px 24px;
-border-radius:24px;
+.container{
+padding:20px 18px 60px;
 }
 
-.logo{
-font-size:38px;
+.header{
+flex-direction:column;
+align-items:flex-start;
+gap:16px;
+}
+
+.publish-btn{
+width:100%;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.preview-name{
+font-size:44px;
+letter-spacing:-2px;
+}
+
+.weight-preview{
+font-size:24px;
+}
+
+.preview-card{
+padding:26px;
 }
 
 }
@@ -164,47 +413,305 @@ font-size:38px;
 
 <body>
 
-<div class="login-box">
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
 
 <div class="logo">
-What<span>Font.</span>
+What<span>Font.</span> Admin
 </div>
 
-<div class="desc">
-관리자 로그인 후 폰트를 등록할 수 있습니다.
-</div>
-
-<div class="form">
-
-<input
-type="email"
-class="input"
-id="email"
-placeholder="이메일"
-/>
-
-<input
-type="password"
-class="input"
-id="password"
-placeholder="비밀번호"
-/>
-
-<button
-class="login-btn"
-id="loginBtn">
-
-로그인
-
+<button class="publish-btn">
+폰트 등록하기
 </button>
 
-<div
-class="message"
-id="message">
+</header>
 
-이메일 또는 비밀번호가 올바르지 않습니다.
+<!-- LAYOUT -->
+
+<div class="layout">
+
+<!-- LEFT -->
+
+<section class="form-panel">
+
+<h2 class="panel-title">
+폰트 등록
+</h2>
+
+<div class="form-grid">
+
+<!-- NAME -->
+
+<div class="field">
+
+<label class="label">
+폰트명
+</label>
+
+<input
+type="text"
+class="input"
+id="fontNameInput"
+placeholder="프리텐다드"
+/>
 
 </div>
+
+<!-- ENGLISH -->
+
+<div class="field">
+
+<label class="label">
+영문명
+</label>
+
+<input
+type="text"
+class="input"
+placeholder="Pretendard"
+/>
+
+</div>
+
+<!-- SLUG -->
+
+<div class="field">
+
+<label class="label">
+slug
+</label>
+
+<input
+type="text"
+class="input"
+placeholder="pretendard"
+/>
+
+</div>
+
+<!-- DESIGNER -->
+
+<div class="field">
+
+<label class="label">
+제작자
+</label>
+
+<input
+type="text"
+class="input"
+placeholder="orioncactus"
+/>
+
+</div>
+
+<!-- CATEGORY -->
+
+<div class="field">
+
+<label class="label">
+카테고리
+</label>
+
+<select class="select">
+
+<option>고딕</option>
+<option>둥근고딕</option>
+<option>명조</option>
+<option>손글씨</option>
+<option>캘리그라피</option>
+<option>픽셀도트</option>
+
+</select>
+
+</div>
+
+<!-- LICENSE -->
+
+<div class="field">
+
+<label class="label">
+라이선스
+</label>
+
+<select class="select">
+
+<option>SIL OFL</option>
+<option>상업용 무료</option>
+<option>개인 무료</option>
+
+</select>
+
+</div>
+
+<!-- DOWNLOAD -->
+
+<div class="field full">
+
+<label class="label">
+다운로드 URL
+</label>
+
+<input
+type="text"
+class="input"
+placeholder="https://..."
+/>
+
+</div>
+
+<!-- TAG -->
+
+<div class="field full">
+
+<label class="label">
+태그
+</label>
+
+<input
+type="text"
+class="input"
+placeholder="고딕, 웹폰트, 상업용무료"
+/>
+
+</div>
+
+<!-- PREVIEW -->
+
+<div class="field full">
+
+<label class="label">
+기본 미리보기 문구
+</label>
+
+<textarea
+class="textarea"
+id="previewTextInput"
+placeholder="세상에 이런 폰트가 나오다니 천재인듯"></textarea>
+
+</div>
+
+<!-- UPLOAD -->
+
+<div class="field full">
+
+<label class="label">
+썸네일 업로드
+</label>
+
+<div class="upload-box">
+
+<div class="upload-title">
+이미지 업로드
+</div>
+
+<div class="upload-sub">
+PNG / JPG / WEBP
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- RIGHT -->
+
+<section class="preview-panel">
+
+<!-- CARD -->
+
+<div class="preview-card">
+
+<div class="preview-label">
+LIVE PREVIEW
+</div>
+
+<h1 class="preview-name" id="previewName">
+프리텐다드
+</h1>
+
+<div class="preview-meta">
+
+<span>고딕</span>
+<span>9가지 굵기</span>
+<span>상업용 무료</span>
+
+</div>
+
+<input
+type="text"
+class="preview-input"
+id="livePreviewInput"
+placeholder="폰트를 미리 입력해보세요"
+/>
+
+<div class="weight-list">
+
+<div class="weight-item">
+<div class="weight-preview w100">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">100</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w300">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">300</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w500">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">500</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w700">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">700</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w900">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">900</div>
+</div>
+
+</div>
+
+<div class="tag-wrap">
+
+<div class="tag">
+고딕
+</div>
+
+<div class="tag">
+상업용무료
+</div>
+
+<div class="tag">
+UI폰트
+</div>
+
+</div>
+
+</div>
+
+<!-- JSON -->
+
+<div class="json-box">
+
+{<br>
+&nbsp;&nbsp;"name":"프리텐다드",<br>
+&nbsp;&nbsp;"slug":"pretendard",<br>
+&nbsp;&nbsp;"designer":"orioncactus",<br>
+&nbsp;&nbsp;"category":"고딕"<br>
+}
+
+</div>
+
+</section>
 
 </div>
 
@@ -212,115 +719,51 @@ id="message">
 
 <script>
 
-/* =========================
-SUPABASE
-========================= */
+const fontNameInput =
+document.getElementById('fontNameInput');
 
-const SUPABASE_URL =
-'https://YOUR_PROJECT.supabase.co';
+const previewName =
+document.getElementById('previewName');
 
-const SUPABASE_ANON_KEY =
-'YOUR_ANON_KEY';
+fontNameInput.addEventListener('input',()=>{
 
-const supabase =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_ANON_KEY
-);
-
-/* =========================
-ELEMENT
-========================= */
-
-const email =
-document.getElementById('email');
-
-const password =
-document.getElementById('password');
-
-const loginBtn =
-document.getElementById('loginBtn');
-
-const message =
-document.getElementById('message');
-
-/* =========================
-LOGIN
-========================= */
-
-async function login(){
-
-message.style.display = 'none';
-
-loginBtn.classList.add('loading');
-loginBtn.innerText = '로그인 중...';
-
-const { data, error } =
-await supabase.auth.signInWithPassword({
-
-email:email.value,
-password:password.value
+previewName.textContent =
+fontNameInput.value.trim()
+|| '프리텐다드';
 
 });
 
-if(error){
+const livePreviewInput =
+document.getElementById('livePreviewInput');
 
-message.style.display = 'block';
+const previewTextInput =
+document.getElementById('previewTextInput');
 
-loginBtn.classList.remove('loading');
-loginBtn.innerText = '로그인';
+const previews =
+document.querySelectorAll('.weight-preview');
 
-return;
+function updatePreview(){
+
+const text =
+livePreviewInput.value.trim()
+|| previewTextInput.value.trim()
+|| '세상에 이런 폰트가 나오다니 천재인듯';
+
+previews.forEach(preview=>{
+preview.textContent = text;
+});
 
 }
 
-/* 로그인 성공 */
-
-location.href = 'admin.html';
-
-}
-
-/* =========================
-EVENT
-========================= */
-
-loginBtn.addEventListener(
-'click',
-login
+livePreviewInput.addEventListener(
+'input',
+updatePreview
 );
 
-password.addEventListener(
-'keydown',
-(e)=>{
-
-if(e.key === 'Enter'){
-login();
-}
-
-}
+previewTextInput.addEventListener(
+'input',
+updatePreview
 );
-
-/* =========================
-ALREADY LOGIN
-========================= */
-
-async function checkUser(){
-
-const {
-data:{ user }
-}
-=
-await supabase.auth.getUser();
-
-if(user){
-
-location.href = 'admin.html';
-
-}
-
-}
-
-checkUser();
 
 </script>
 
