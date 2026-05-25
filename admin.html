@@ -453,8 +453,12 @@ padding:26px;
 What<span>Font.</span> Admin
 </div>
 
-<button class="publish-btn">
+<button
+class="publish-btn"
+onclick="publishFont()">
+
 폰트 등록하기
+
 </button>
 
 <button
@@ -804,6 +808,12 @@ previewTextInput.addEventListener(
 updatePreview
 );
 
+async function publishFont(){
+
+alert('폰트 등록 기능 준비중');
+
+}
+  
 async function logout(){
 
 localStorage.clear();
