@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>WhatFont — Result</title>
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--bg:#f5f5f5;
+--text:#111;
+--sub:#777;
+--line:#e5e5e5;
+--blue:#3155e7;
+}
+
+body{
+background:var(--bg);
+font-family:'Pretendard',sans-serif;
+color:var(--text);
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+button,
+input{
+font-family:'Pretendard',sans-serif;
+}
+
+.container{
+width:100%;
+max-width:1600px;
+margin:0 auto;
+padding:30px 32px 100px;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:42px;
+gap:20px;
+}
+
+/* LEFT */
+
+.header-left{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+/* LOGO */
+
+.logo{
+font-size:38px;
+font-weight:900;
+letter-spacing:-1px;
+white-space:nowrap;
+}
+
+.logo span{
+color:var(--blue);
+}
+
+/* SEARCH */
+
+.search-box{
+width:260px;
+}
+
+.search-input{
+width:100%;
+height:48px;
+
+background:#fff;
+
+border:1px solid var(--line);
+border-radius:14px;
+
+padding:0 18px;
+
+font-size:14px;
+
+outline:none;
+transition:.2s;
+}
+
+.search-input:focus{
+border-color:var(--blue);
+}
+
+/* RIGHT */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+/* BUTTON */
+
+.back-btn{
+height:48px;
+padding:0 22px;
+
+border:none;
+border-radius:14px;
+
+background:#111;
+color:#fff;
+
+font-weight:700;
+cursor:pointer;
+transition:.2s;
+}
+
+.back-btn:hover{
+opacity:.9;
+}
+
+/* =========================
+LAYOUT
+========================= */
+
+.layout{
+display:grid;
+grid-template-columns:minmax(0,1fr) 340px;
+gap:32px;
+align-items:flex-start;
+}
+
+/* =========================
+MAIN
+========================= */
+
+.main{
+min-width:0;
+}
+
+/* TITLE */
+
+.font-title{
+font-size:72px;
+font-weight:900;
+letter-spacing:-5px;
+line-height:1;
+margin-bottom:20px;
+}
+
+/* META */
+
+.font-meta{
+display:flex;
+flex-wrap:wrap;
+gap:18px;
+margin-bottom:28px;
+}
+
+.meta-item{
+font-size:14px;
+font-weight:700;
+color:#666;
+}
+
+.meta-item strong{
+color:#111;
+margin-right:6px;
+}
+
+/* BUTTONS */
+
+.action-row{
+display:flex;
+gap:14px;
+margin-bottom:44px;
+flex-wrap:wrap;
+}
+
+.download-btn{
+height:52px;
+padding:0 26px;
+
+border:none;
+border-radius:14px;
+
+background:var(--blue);
+color:#fff;
+
+font-size:15px;
+font-weight:800;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+transition:.2s;
+}
+
+.download-btn:hover{
+opacity:.9;
+}
+
+/* =========================
+PREVIEW
+========================= */
+
+.preview-section{
+margin-bottom:60px;
+}
+
+.section-label{
+font-size:13px;
+font-weight:800;
+letter-spacing:.3px;
+color:#666;
+margin-bottom:14px;
+}
+
+.preview-input{
+width:100%;
+height:62px;
+
+background:#fff;
+
+border:1px solid var(--line);
+border-radius:16px;
+
+padding:0 22px;
+
+font-size:18px;
+font-weight:700;
+
+outline:none;
+margin-bottom:34px;
+}
+
+.preview-input:focus{
+border-color:var(--blue);
+}
+
+/* =========================
+WEIGHT LIST
+========================= */
+
+.weight-list{
+display:flex;
+flex-direction:column;
+}
+
+.weight-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:28px 0;
+
+border-bottom:1px solid var(--line);
+gap:20px;
+}
+
+.weight-preview{
+font-size:40px;
+letter-spacing:-2px;
+line-height:1.2;
+word-break:keep-all;
+}
+
+.weight-number{
+font-size:14px;
+font-weight:800;
+color:#666;
+flex-shrink:0;
+}
+
+/* WEIGHT */
+
+.w100{font-weight:100;}
+.w200{font-weight:200;}
+.w300{font-weight:300;}
+.w400{font-weight:400;}
+.w500{font-weight:500;}
+.w600{font-weight:600;}
+.w700{font-weight:700;}
+.w800{font-weight:800;}
+.w900{font-weight:900;}
+
+/* =========================
+LICENSE
+========================= */
+
+.license-box{
+margin-top:60px;
+
+background:#fff;
+
+border:1px solid var(--line);
+border-radius:20px;
+
+padding:32px;
+}
+
+.license-title{
+font-size:22px;
+font-weight:900;
+margin-bottom:18px;
+}
+
+.license-text{
+font-size:15px;
+line-height:1.8;
+color:#555;
+}
+
+/* =========================
+SIDEBAR
+========================= */
+
+.sidebar{
+display:flex;
+flex-direction:column;
+gap:24px;
+}
+
+.side-box{
+background:#fff;
+
+border:1px solid var(--line);
+border-radius:20px;
+
+padding:24px;
+}
+
+.side-title{
+font-size:14px;
+font-weight:900;
+margin-bottom:18px;
+}
+
+/* SIMILAR */
+
+.similar-list{
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+
+.similar-link{
+font-size:18px;
+font-weight:800;
+transition:.2s;
+}
+
+.similar-link:hover{
+color:var(--blue);
+}
+
+/* TAG */
+
+.tag-wrap{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.tag{
+padding:10px 14px;
+
+background:#f2f2f2;
+border-radius:999px;
+
+font-size:13px;
+font-weight:700;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:1100px){
+
+.layout{
+grid-template-columns:1fr;
+}
+
+.sidebar{
+order:-1;
+}
+
+}
+
+@media(max-width:700px){
+
+.container{
+padding:20px 18px 80px;
+}
+
+.header{
+flex-direction:column;
+align-items:flex-start;
+gap:18px;
+}
+
+.header-left{
+width:100%;
+flex-direction:column;
+align-items:flex-start;
+}
+
+.search-box{
+width:100%;
+}
+
+.header-right{
+width:100%;
+}
+
+.back-btn{
+width:100%;
+}
+
+.font-title{
+font-size:52px;
+letter-spacing:-3px;
+}
+
+.weight-preview{
+font-size:28px;
+}
+
+.weight-item{
+padding:20px 0;
+}
+
+.preview-input{
+height:56px;
+font-size:16px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="header-left">
+
+<a href="index.html" class="logo">
+What<span>Font.</span>
+</a>
+
+<div class="search-box">
+
+<input
+type="text"
+class="search-input"
+placeholder="폰트 검색"
+/>
+
+</div>
+
+</div>
+
+<div class="header-right">
+
+<button
+class="back-btn"
+onclick="location.href='index.html'">
+
+목록으로
+
+</button>
+
+</div>
+
+</header>
+
+<!-- LAYOUT -->
+
+<div class="layout">
+
+<!-- LEFT -->
+
+<main class="main">
+
+<h1 class="font-title" id="fontName">
+프리텐다드
+</h1>
+
+<div class="font-meta">
+
+<div class="meta-item">
+<strong>제작</strong>
+<span id="fontDesigner">orioncactus</span>
+</div>
+
+<div class="meta-item">
+<strong>카테고리</strong>
+<span id="fontCategory">고딕</span>
+</div>
+
+<div class="meta-item">
+<strong>굵기</strong>
+<span id="fontWeights">9가지</span>
+</div>
+
+<div class="meta-item">
+<strong>조회수</strong>
+<span id="fontViews">4.3만</span>
+</div>
+
+</div>
+
+<!-- ACTION -->
+
+<div class="action-row">
+
+<a
+href="https://github.com/orioncactus/pretendard/releases"
+target="_blank"
+class="download-btn">
+
+폰트 다운로드
+
+</a>
+
+</div>
+
+<!-- PREVIEW -->
+
+<section class="preview-section">
+
+<div class="section-label">
+FONT PREVIEW
+</div>
+
+<input
+type="text"
+class="preview-input"
+id="previewInput"
+placeholder="폰트를 미리 입력해보세요"
+/>
+
+<div class="weight-list">
+
+<div class="weight-item">
+<div class="weight-preview w100">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">100</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w200">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">200</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w300">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">300</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w400">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">400</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w500">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">500</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w600">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">600</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w700">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">700</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w800">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">800</div>
+</div>
+
+<div class="weight-item">
+<div class="weight-preview w900">세상에 이런 폰트가 나오다니 천재인듯</div>
+<div class="weight-number">900</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- LICENSE -->
+
+<section class="license-box">
+
+<div class="license-title">
+라이선스
+</div>
+
+<div class="license-text">
+
+SIL 오픈 폰트 라이선스<br>
+상업적 사용 가능<br>
+웹/앱/브랜딩/영상 사용 가능
+
+</div>
+
+</section>
+
+</main>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<!-- SIMILAR -->
+
+<div class="side-box">
+
+<div class="side-title">
+비슷한 폰트
+</div>
+
+<div class="similar-list">
+
+<a href="#" class="similar-link">
+Paperlogy
+</a>
+
+<a href="#" class="similar-link">
+SUIT
+</a>
+
+<a href="#" class="similar-link">
+Neo둥근모
+</a>
+
+<a href="#" class="similar-link">
+G마켓 산스
+</a>
+
+</div>
+
+</div>
+
+<!-- TAG -->
+
+<div class="side-box">
+
+<div class="side-title">
+태그
+</div>
+
+<div class="tag-wrap">
+
+<div class="tag">고딕</div>
+<div class="tag">상업용무료</div>
+<div class="tag">UI폰트</div>
+<div class="tag">웹폰트</div>
+<div class="tag">깔끔한</div>
+
+</div>
+
+</div>
+
+</aside>
+
+</div>
+
+</div>
+
+<script>
+
+const previewInput =
+document.getElementById('previewInput');
+
+const previews =
+document.querySelectorAll('.weight-preview');
+
+previewInput.addEventListener('input',()=>{
+
+const text =
+previewInput.value.trim()
+|| '세상에 이런 폰트가 나오다니 천재인듯';
+
+previews.forEach(preview=>{
+preview.textContent = text;
+});
+
+});
+
+</script>
+
+</body>
+</html>
