@@ -828,6 +828,13 @@ document.getElementById('fontNameInput').value;
 const previewText =
 document.getElementById('previewTextInput').value;
 
+
+const slug =
+name
+.toLowerCase()
+.replaceAll(' ','-');
+  
+
 if(!name){
 
 alert('폰트명을 입력하세요');
@@ -843,10 +850,13 @@ await client
 
 name:name,
 
+slug:slug,
+
 preview_text:previewText
 
 }]);
 
+  
 
 if(error){
 
