@@ -84,7 +84,30 @@ font-weight:800;
 cursor:pointer;
 transition:.2s;
 }
+.delete-btn{
+height:52px;
+padding:0 22px;
 
+border:none;
+border-radius:14px;
+
+background:#fff;
+border:1px solid var(--line);
+
+font-size:15px;
+font-weight:800;
+
+cursor:pointer;
+transition:.2s;
+}
+
+.delete-btn:hover{
+border-color:#000;
+}
+
+
+
+  
 .logout-btn{
 height:52px;
 padding:0 24px;
@@ -460,7 +483,16 @@ onclick="publishFont()">
 폰트 등록하기
 
 </button>
+<button
+class="delete-btn"
+onclick="deleteFont()">
 
+삭제
+
+</button>
+
+
+  
 <button
 class="logout-btn"
 onclick="logout()">
@@ -880,6 +912,47 @@ alert('폰트 등록 완료');
 
   
 async function logout(){
+async function deleteFont(){
+
+const ok =
+confirm('삭제할까요?');
+
+if(!ok){
+return;
+}
+
+const { data } =
+await client
+.from('fonts')
+.select('id')
+.order('id', { ascending:false })
+.limit(1)
+.single();
+
+if(!data){
+
+alert('삭제할 폰트가 없습니다');
+return;
+
+}
+
+const { error } =
+await client
+.from('fonts')
+.delete()
+.eq('id', data.id);
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+alert('삭제 완료');
+
+}
+  
 
 localStorage.clear();
 
