@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>WhatFont — Korean Font Archive</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#050505;
+color:#f5f5f5;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+overflow-x:hidden;
+}
+
+.container{
+width:100%;
+max-width:1600px;
+margin:0 auto;
+padding:28px 34px 120px;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:30px;
+padding-bottom:24px;
+border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.header-left{
+display:flex;
+align-items:center;
+gap:50px;
+}
+
+.logo{
+font-size:32px;
+font-weight:900;
+letter-spacing:-1px;
+}
+
+.logo span{
+color:#2453ff;
+}
+
+/* NAV */
+
+.nav{
+display:flex;
+align-items:center;
+gap:28px;
+overflow-x:auto;
+padding-bottom:4px;
+}
+
+.nav a{
+text-decoration:none;
+color:#b8b8b8;
+font-size:15px;
+font-weight:600;
+transition:0.2s;
+white-space:nowrap;
+position:relative;
+}
+
+.nav a:hover{
+color:#ffffff;
+}
+
+.nav a.active{
+color:#ffffff;
+}
+
+.nav a.active::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-24px;
+width:100%;
+height:2px;
+background:#2453ff;
+}
+
+/* SEARCH */
+
+.search-box{
+width:420px;
+position:relative;
+flex-shrink:0;
+}
+
+.search-input{
+width:100%;
+height:54px;
+background:#0f0f0f;
+border:1px solid rgba(255,255,255,0.08);
+border-radius:16px;
+padding:0 56px 0 20px;
+font-size:15px;
+color:#ffffff;
+outline:none;
+transition:0.2s;
+}
+
+.search-input:focus{
+border-color:#2453ff;
+}
+
+.search-input::placeholder{
+color:#777777;
+}
+
+.search-icon{
+position:absolute;
+right:18px;
+top:50%;
+transform:translateY(-50%);
+font-size:18px;
+color:#8a8a8a;
+}
+
+/* HERO */
+
+.hero{
+padding:72px 0 50px;
+}
+
+.hero-title{
+font-size:clamp(54px,8vw,120px);
+line-height:0.95;
+letter-spacing:-5px;
+font-weight:900;
+margin-bottom:26px;
+}
+
+.hero-title span{
+color:#2453ff;
+}
+
+.hero-sub{
+font-size:18px;
+line-height:1.7;
+color:#b8b8b8;
+max-width:700px;
+margin-bottom:42px;
+word-break:keep-all;
+}
+
+/* PREVIEW */
+
+.preview-wrap{
+max-width:760px;
+}
+
+.preview-input{
+width:100%;
+height:78px;
+background:#0f0f0f;
+border:1px solid rgba(255,255,255,0.08);
+border-radius:22px;
+padding:0 24px;
+font-size:28px;
+font-weight:700;
+color:#ffffff;
+outline:none;
+transition:0.2s;
+}
+
+.preview-input:focus{
+border-color:#2453ff;
+}
+
+.preview-input::placeholder{
+color:#666666;
+}
+
+/* FILTER */
+
+.filter-bar{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+margin-bottom:44px;
+}
+
+.filter-btn{
+height:42px;
+padding:0 20px;
+border-radius:999px;
+border:1px solid rgba(255,255,255,0.08);
+background:#0f0f0f;
+color:#d0d0d0;
+font-size:14px;
+font-weight:700;
+cursor:pointer;
+transition:0.2s;
+}
+
+.filter-btn:hover{
+border-color:#2453ff;
+color:#ffffff;
+}
+
+.filter-btn.active{
+background:#2453ff;
+border-color:#2453ff;
+color:#ffffff;
+}
+
+/* GRID */
+
+.font-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+gap:22px;
+}
+
+/* CARD */
+
+.font-card{
+background:#0f0f0f;
+border:1px solid rgba(255,255,255,0.06);
+border-radius:28px;
+padding:30px;
+transition:0.25s ease;
+}
+
+.font-card:hover{
+transform:translateY(-5px);
+border-color:#2453ff;
+}
+
+.card-top{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:20px;
+margin-bottom:28px;
+}
+
+.font-name{
+font-size:30px;
+font-weight:900;
+letter-spacing:-1px;
+margin-bottom:8px;
+}
+
+.font-creator{
+font-size:14px;
+color:#868686;
+}
+
+.font-tag{
+height:34px;
+padding:0 14px;
+border-radius:999px;
+background:rgba(36,83,255,0.12);
+color:#2453ff;
+font-size:12px;
+font-weight:800;
+display:flex;
+align-items:center;
+justify-content:center;
+white-space:nowrap;
+}
+
+/* PREVIEW TEXT */
+
+.font-preview{
+font-size:44px;
+font-weight:800;
+line-height:1.35;
+letter-spacing:-2px;
+margin-bottom:34px;
+word-break:keep-all;
+}
+
+/* BOTTOM */
+
+.card-bottom{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+}
+
+.font-weight{
+font-size:14px;
+color:#8c8c8c;
+}
+
+.download-btn{
+height:46px;
+padding:0 22px;
+border-radius:999px;
+background:#2453ff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+font-weight:800;
+color:#ffffff;
+text-decoration:none;
+transition:0.2s;
+}
+
+.download-btn:hover{
+opacity:0.9;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.header{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.header-left{
+flex-direction:column;
+align-items:flex-start;
+gap:24px;
+width:100%;
+}
+
+.search-box{
+width:100%;
+}
+
+}
+
+@media(max-width:768px){
+
+.container{
+padding:22px 18px 100px;
+}
+
+.hero{
+padding:58px 0 44px;
+}
+
+.hero-title{
+font-size:68px;
+line-height:0.95;
+}
+
+.hero-sub{
+font-size:17px;
+}
+
+.preview-input{
+height:68px;
+font-size:22px;
+}
+
+.font-grid{
+grid-template-columns:1fr;
+}
+
+.font-card{
+padding:26px;
+}
+
+.font-preview{
+font-size:38px;
+}
+
+.card-top{
+flex-direction:column;
+}
+
+.card-bottom{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.download-btn{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="header-left">
+
+<div class="logo">
+What<span>Font.</span>
+</div>
+
+<nav class="nav">
+
+<a href="#" class="active">무료폰트</a>
+<a href="#">추천폰트</a>
+<a href="#">고딕</a>
+<a href="#">둥근고딕</a>
+<a href="#">명조</a>
+<a href="#">손글씨</a>
+<a href="#">캘리그라피</a>
+<a href="#">붓글씨</a>
+<a href="#">레트로</a>
+<a href="#">픽셀도트</a>
+
+</nav>
+
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+class="search-input"
+placeholder="폰트 이름 또는 스타일 검색">
+
+<div class="search-icon">
+⌕
+</div>
+
+</div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1 class="hero-title">
+KOREAN<br>
+FONT<br>
+<span>ARCHIVE.</span>
+</h1>
+
+<p class="hero-sub">
+다양한 무료 한글 폰트를 탐색하고<br>
+실시간 미리보기와 함께 비교해보세요.
+</p>
+
+<div class="preview-wrap">
+
+<input
+type="text"
+class="preview-input"
+id="previewInput"
+value="세상에 이런 폰트가 나오다니 천재인듯"
+placeholder="미리보기 문구를 입력해보세요">
+
+</div>
+
+</section>
+
+<!-- FILTER -->
+
+<section class="filter-bar">
+
+<button class="filter-btn active">전체</button>
+<button class="filter-btn">고딕</button>
+<button class="filter-btn">둥근고딕</button>
+<button class="filter-btn">명조</button>
+<button class="filter-btn">손글씨</button>
+<button class="filter-btn">캘리그라피</button>
+<button class="filter-btn">붓글씨</button>
+<button class="filter-btn">레트로</button>
+<button class="filter-btn">픽셀도트</button>
+
+</section>
+
+<!-- GRID -->
+
+<section class="font-grid">
+
+<!-- CARD -->
+
+<div class="font-card">
+
+<div class="card-top">
+
+<div>
+
+<div class="font-name">
+Pretendard
+</div>
+
+<div class="font-creator">
+orioncactus
+</div>
+
+</div>
+
+<div class="font-tag">
+고딕
+</div>
+
+</div>
+
+<div class="font-preview preview-text">
+세상에 이런 폰트가 나오다니 천재인듯
+</div>
+
+<div class="card-bottom">
+
+<div class="font-weight">
+9 Weights
+</div>
+
+<a href="#" class="download-btn">
+다운로드
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="font-card">
+
+<div class="card-top">
+
+<div>
+
+<div class="font-name">
+Paperlogy
+</div>
+
+<div class="font-creator">
+Freesentation
+</div>
+
+</div>
+
+<div class="font-tag">
+둥근고딕
+</div>
+
+</div>
+
+<div class="font-preview preview-text">
+세상에 이런 폰트가 나오다니 천재인듯
+</div>
+
+<div class="card-bottom">
+
+<div class="font-weight">
+7 Weights
+</div>
+
+<a href="#" class="download-btn">
+다운로드
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="font-card">
+
+<div class="card-top">
+
+<div>
+
+<div class="font-name">
+조선일보명조
+</div>
+
+<div class="font-creator">
+조선일보
+</div>
+
+</div>
+
+<div class="font-tag">
+명조
+</div>
+
+</div>
+
+<div class="font-preview preview-text">
+세상에 이런 폰트가 나오다니 천재인듯
+</div>
+
+<div class="card-bottom">
+
+<div class="font-weight">
+2 Weights
+</div>
+
+<a href="#" class="download-btn">
+다운로드
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="font-card">
+
+<div class="card-top">
+
+<div>
+
+<div class="font-name">
+온글잎 손편지체
+</div>
+
+<div class="font-creator">
+온글잎
+</div>
+
+</div>
+
+<div class="font-tag">
+손글씨
+</div>
+
+</div>
+
+<div class="font-preview preview-text">
+세상에 이런 폰트가 나오다니 천재인듯
+</div>
+
+<div class="card-bottom">
+
+<div class="font-weight">
+1 Weight
+</div>
+
+<a href="#" class="download-btn">
+다운로드
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="font-card">
+
+<div class="card-top">
+
+<div>
+
+<div class="font-name">
+둘기마요체
+</div>
+
+<div class="font-creator">
+둘기마요
+</div>
+
+</div>
+
+<div class="font-tag">
+레트로
+</div>
+
+</div>
+
+<div class="font-preview preview-text">
+세상에 이런 폰트가 나오다니 천재인듯
+</div>
+
+<div class="card-bottom">
+
+<div class="font-weight">
+1 Weight
+</div>
+
+<a href="#" class="download-btn">
+다운로드
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="font-card">
+
+<div class="card-top">
+
+<div>
+
+<div class="font-name">
+NeoDunggeunmo
+</div>
+
+<div class="font-creator">
+DungGeunMo
+</div>
+
+</div>
+
+<div class="font-tag">
+픽셀도트
+</div>
+
+</div>
+
+<div class="font-preview preview-text">
+세상에 이런 폰트가 나오다니 천재인듯
+</div>
+
+<div class="card-bottom">
+
+<div class="font-weight">
+1 Weight
+</div>
+
+<a href="#" class="download-btn">
+다운로드
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<script>
+
+const input =
+document.getElementById('previewInput');
+
+const previews =
+document.querySelectorAll('.preview-text');
+
+input.addEventListener('input', ()=>{
+
+const value =
+input.value.trim();
+
+previews.forEach(preview=>{
+
+preview.textContent =
+value || '세상에 이런 폰트가 나오다니 천재인듯';
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
