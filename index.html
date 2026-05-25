@@ -1168,6 +1168,18 @@ const previewText =
 previewInput.value.trim()
 || font.preview_text;
 
+const weightCount = [
+
+font.font_100,
+font.font_300,
+font.font_500,
+font.font_700,
+font.font_900
+
+].filter(Boolean).length;
+
+  
+
 fontGrid.innerHTML += `
 
 <a href="result.html?font=${font.id}" class="font-card">
@@ -1191,7 +1203,7 @@ ${previewText}
 <div class="card-footer">
 
 <div class="font-weight">
-9가지 굵기
+${weightCount}가지 굵기
 </div>
 
 <div class="arrow">
