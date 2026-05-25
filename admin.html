@@ -68,7 +68,6 @@ letter-spacing:-1px;
 .logo span{
 color:var(--blue);
 }
-
 .publish-btn{
 height:52px;
 padding:0 26px;
@@ -83,7 +82,30 @@ font-size:15px;
 font-weight:800;
 
 cursor:pointer;
+transition:.2s;
 }
+
+.logout-btn{
+height:52px;
+padding:0 24px;
+
+border:none;
+border-radius:14px;
+
+background:#222;
+color:#fff;
+
+font-size:15px;
+font-weight:800;
+
+cursor:pointer;
+transition:.2s;
+}
+
+.logout-btn:hover{
+opacity:.9;
+}
+
 
 /* =========================
 LAYOUT
@@ -156,6 +178,9 @@ outline:none;
 transition:.2s;
 }
 
+
+
+  
 .input,
 .select{
 height:52px;
@@ -374,6 +399,11 @@ grid-template-columns:1fr;
 
 @media(max-width:700px){
 
+.logout-btn{
+width:100%;
+}
+
+  
 .container{
 padding:20px 18px 60px;
 }
@@ -426,6 +456,15 @@ What<span>Font.</span> Admin
 <button class="publish-btn">
 폰트 등록하기
 </button>
+
+<button
+class="logout-btn"
+onclick="logout()">
+
+로그아웃
+
+</button>
+  
 
 </header>
 
@@ -765,6 +804,16 @@ previewTextInput.addEventListener(
 updatePreview
 );
 
+async function logout(){
+
+localStorage.clear();
+
+location.href = 'login.html';
+
+}
+
+
+  
 </script>
 
 </body>
