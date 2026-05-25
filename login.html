@@ -186,7 +186,8 @@ placeholder="비밀번호"
 
 <button
 class="login-btn"
-id="loginBtn">
+id="loginBtn"
+onclick="login()">
 
 로그인
 
@@ -279,10 +280,7 @@ location.href = 'admin.html';
 EVENT
 ========================= */
 
-loginBtn.addEventListener(
-'click',
-login
-);
+
 
 password.addEventListener(
 'keydown',
