@@ -9,9 +9,9 @@
 
 <link
 rel="stylesheet"
-href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
 />
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 
 *{
@@ -762,6 +762,19 @@ UI폰트
 
 <script>
 
+const SUPABASE_URL =
+'https://ttunieohxvnhwiikxfzu.supabase.co';
+
+const SUPABASE_ANON_KEY =
+'sb_publishable_mdIZt_b1mzvuRoBp3eLYHA_MmBJfIoP';
+
+const client =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
+
+
 const fontNameInput =
 document.getElementById('fontNameInput');
 
@@ -807,12 +820,50 @@ previewTextInput.addEventListener(
 'input',
 updatePreview
 );
-
 async function publishFont(){
 
-alert('폰트 등록 기능 준비중');
+const name =
+document.getElementById('fontNameInput').value;
+
+const previewText =
+document.getElementById('previewTextInput').value;
+
+if(!name){
+
+alert('폰트명을 입력하세요');
+
+return;
 
 }
+
+const { data, error } =
+await client
+.from('fonts')
+.insert([{
+
+name:name,
+
+preview_text:previewText
+
+}]);
+
+if(error){
+
+console.log(error);
+
+alert('등록 실패');
+
+return;
+
+}
+
+alert('폰트 등록 완료');
+
+}
+
+
+
+
   
 async function logout(){
 
