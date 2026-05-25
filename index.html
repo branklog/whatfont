@@ -11,7 +11,7 @@
 rel="stylesheet"
 href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
 />
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 
 @font-face{
@@ -1088,49 +1088,22 @@ placeholder="폰트 미리 써보기"
 
 <script>
 
-const fonts = [
+const SUPABASE_URL =
+'https://ttunieohxvnhwiikxfzu.supabase.co';
 
-{
-id:'pretendard',
-name:'프리텐다드',
-creator:'길형진 (orioncactus)',
-category:'고딕',
-weights:'9가지 굵기',
-preview:'세상에 이런 폰트가 나오다니 천재인듯',
-className:''
-},
+const SUPABASE_ANON_KEY =
+'sb_publishable_mdIZt_b1mzvuRoBp3eLYHA_MmBJfIoP';
 
-{
-id:'paperlogy',
-name:'페이퍼로지',
-creator:'Freesentation',
-category:'둥근고딕',
-weights:'7가지 굵기',
-preview:'멋진 한글 폰트와 영문 폰트의 조합',
-className:'paperlogy'
-},
+const client =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
 
-{
-id:'gmarket',
-name:'G마켓 산스',
-creator:'G마켓',
-category:'고딕',
-weights:'5가지 굵기',
-preview:'온라인 쇼핑은 하다 보면 끝이 없지',
-className:''
-},
+let fonts = [];
 
-{
-id:'neo',
-name:'Neo둥근모',
-creator:'DungGeunMo',
-category:'픽셀도트',
-weights:'1가지 굵기',
-preview:'레트로 감성의 픽셀 스타일 폰트',
-className:''
-}
 
-];
+  
 
 const fontGrid =
 document.getElementById('fontGrid');
@@ -1143,6 +1116,30 @@ document.getElementById('searchInput');
 
 let currentFilter = '전체';
 
+async function loadFonts(){
+
+const { data, error } =
+await client
+.from('fonts')
+.select('*')
+.order('id', { ascending:false });
+
+if(error){
+
+console.log(error);
+return;
+
+}
+
+fonts = data;
+
+renderFonts();
+
+}
+
+
+
+  
 function renderFonts(){
 
 const search =
@@ -1159,7 +1156,7 @@ currentFilter === '전체'
 
 const matchSearch =
 font.name.toLowerCase().includes(search)
-|| font.creator.toLowerCase().includes(search);
+|| (font.designer || '').toLowerCase().includes(search);
 
 return matchCategory && matchSearch;
 
@@ -1169,7 +1166,7 @@ filtered.forEach(font => {
 
 const previewText =
 previewInput.value.trim()
-|| font.preview;
+|| font.preview_text;
 
 fontGrid.innerHTML += `
 
@@ -1182,7 +1179,7 @@ ${font.name}
 </div>
 
 <div class="font-maker">
-${font.creator}
+${font.designer || ''}
 </div>
 
 <div class="font-preview ${font.className}">
@@ -1194,7 +1191,7 @@ ${previewText}
 <div class="card-footer">
 
 <div class="font-weight">
-${font.weights}
+9가지 굵기
 </div>
 
 <div class="arrow">
@@ -1244,7 +1241,7 @@ btn.classList.add('active');
 
 });
 
-renderFonts();
+loadFonts();
 
 });
 
@@ -1273,7 +1270,7 @@ overlay.classList.remove('active');
 
 });
 
-renderFonts();
+loadFonts();
 
 </script>
 
