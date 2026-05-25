@@ -15,12 +15,19 @@ href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretend
 <style>
 
 @font-face{
-font-family:'Paperlogy';
-src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2501-1@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
-font-weight:800;
-font-style:normal;
+font-family:'Yeonsung';
+src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/BMYEONSUNG.woff') format('woff');
 }
 
+@font-face{
+font-family:'Gowun';
+src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-1@1.0/GowunDodum-Regular.woff') format('woff');
+}
+
+@font-face{
+font-family:'Ownglyph';
+src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302-1@1.0/Ownglyph_corncorn-Rg.woff2') format('woff2');
+}
 *{
 margin:0;
 padding:0;
@@ -376,7 +383,7 @@ margin-bottom:8px;
 
 .default-text{
 font-size:clamp(100px,8vw,178px);
-font-family:'Paperlogy';
+font-family:'BMYEONSUNG';
   
 font-weight:900;
 letter-spacing:-11px;
@@ -702,9 +709,19 @@ color:#666;
 font-size:22px;
 }
 
-.paperlogy{
-font-family:'Paperlogy';
+
+.font-yeonsung{
+font-family:'Yeonsung';
 }
+
+.font-gowun{
+font-family:'Gowun';
+}
+
+.font-ownglyph{
+font-family:'Ownglyph';
+}
+  
 
 /* =========================
 TABLET
@@ -1009,9 +1026,9 @@ ARCHIVE
 </div>
 
 <a href="result.html?font=온글잎 손편지체"
-class="floating-card card-온글잎 손편지체">
+class="floating-card card-ownglyph">
 
-<div class="floating-title 온글잎 손편지체">
+<div class="floating-title font-ownglyph">
 온글잎 손편지체
 </div>
 
@@ -1025,9 +1042,9 @@ class="floating-card card-온글잎 손편지체">
 <a href="result.html?font=pretendard"
 class="floating-card card-pretendard">
 
-<div class="floating-title">
+<div class="floating-title font-gowun">
 카페24 고운밤
-</div>
+</
 
 <div class="floating-desc">
 붓펜 느낌이 매력적인<br>
@@ -1039,7 +1056,7 @@ class="floating-card card-pretendard">
 <a href="result.html?font=neo"
 class="floating-card card-neo">
 
-<div class="floating-title">
+<div class="floating-title font-yeonsung">
 나눔손글씨
 </div>
 
@@ -1068,15 +1085,11 @@ placeholder="폰트 미리 써보기"
 <div class="filter-bar">
 
 <button class="filter-btn active" data-filter="전체">전체</button>
-<button class="filter-btn" data-filter="고딕">고딕</button>
-<button class="filter-btn" data-filter="둥근고딕">둥근고딕</button>
-<button class="filter-btn" data-filter="명조">명조</button>
 <button class="filter-btn" data-filter="손글씨">손글씨</button>
-<button class="filter-btn" data-filter="캘리그라피">캘리그라피</button>
 <button class="filter-btn" data-filter="붓글씨">붓글씨</button>
+<button class="filter-btn" data-filter="캘리그라피">캘리그라피</button>
+<button class="filter-btn" data-filter="영문필기체">영문 필기체</button>
 <button class="filter-btn" data-filter="레트로">레트로</button>
-<button class="filter-btn" data-filter="픽셀도트">픽셀도트</button>
-
 </div>
 
 </section>
